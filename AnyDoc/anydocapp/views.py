@@ -24,6 +24,18 @@ def handler404(request):
 def handler500(request):
     return render(request, '500.html', status=500)
 
+def radevou(request):
+    radevus = []
+    giatroi = []
+    giatroi = Giatroi.objects
+    print(giatroi)
+
+
+
+
+
+    return render(request, 'radevou.html')
+
 
 def resetpass(request):
     if request.method == 'GET' and request.user.is_authenticated:
@@ -109,9 +121,3 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 
-def radevou(request):
-    context = {
-
-
-    }
-    return render(request, 'radevou.html', context)
