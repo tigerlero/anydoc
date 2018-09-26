@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Change Password Page{% endblock %}
+{% block css_files %}
+  {% load staticfiles %}
+{% endblock %}
+{% block body %}
+
+
+  <h1>Reset Your Password Here:</h1>
+  <hr>
+  <br>
+  <p></p>
+  <br>
+
+  <form class="form-inline" action="{% url 'resetpasss' %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+
+      <div class="form-group">
+        {% if field.errors %}
+            <small><ul class="alert alert-warning" >{{ field.errors }}</ul></small>
+        {% endif %}
+
+        <b>New</b> {{ field.label_tag }} {{ field }}
+
+        <br>
+        <p></p>
+        {% if field.help_text %}
+          <small><ul class="alert alert-info">{{ field.help_text|safe }}</ul></small>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-md btn-success" style="border-radius:0px;border:0;">Reset Password</button>
+      </div>
+    </div>
+
+  </form>
+        </div>
+{% endblock %}

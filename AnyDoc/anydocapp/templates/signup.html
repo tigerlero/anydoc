@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div id="homediv" style="width: 98%; padding-right:1%; padding-left:1%; padding-top: 1%; float: right;">
+  <h1 style="padding-left: 38%">Create a New Account Here:</h1>
+  <hr>
+  <br>
+  <p></p>
+  <br>
+  <form style="padding-left: 40%" class="form-horizontal" action="{% url 'signup' %}" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+
+      <div class="form-group">
+        {% if field.errors %}
+            <small><ul class="alert alert-warning" style="border-radius:0px; border:0">{{ field.errors }}</ul></small>
+        {% endif %}
+
+        {{ field.label_tag }} {{ field }}
+        <br>
+        <p></p>
+        {% if field.help_text %}
+          <small><ul  style="border-radius:0px; border:0">{{ field.help_text|safe }}</ul></small>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-8">
+        <button type="submit" class="btn btn-lg btn-success" style="border-radius:0px;border:0;">Sign Up !</button>
+      </div>
+    </div>
+  </form>
+        </div>
+{% endblock %}
