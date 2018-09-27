@@ -11,11 +11,11 @@ class Profile(models.Model):
 
 class Radevou(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    eidikotita = models.CharField(max_length=50)
     title = models.CharField(max_length=46)
     description = models.TextField(max_length=3000)
     perioxi = models.CharField(max_length=46)
     radevou = models.DateField(default=None, blank=False, null=False)
+
 
     def __str__(self):
         return self.user.username + " " + self.title + " " + self.description+" "+self.radevou

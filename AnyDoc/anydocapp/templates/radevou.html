@@ -4,8 +4,12 @@
 {% block title %} {% endblock %}
 
 {% block content %}
-
-<h1>homepage</h1>
-
-
+<form method="post" novalidate>
+  {% csrf_token %}
+  <table border="1">
+    {{ form }}
+  </table>
+  <button type="submit">Submit</button>
+</form>
+</div>
 {% endblock %}

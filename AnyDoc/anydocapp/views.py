@@ -6,7 +6,28 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import UserRegFrom, ResetPasswordForm, UpdateRadevou, SetRadevou
 from .models import Profile, Radevou, Giatroi
 
-
+radevus = []
+giatroi = Giatroi.objects.all()
+eidikotites = []
+perioxes = []
+tils = []
+fullnames = []
+amkas = []
+for i in giatroi:
+    radevus.append(i.radevous)
+    eidikotites.append(i.eidikotita)
+    perioxes.append(i.perioxi)
+    til = i.til
+    til = str(til)
+    til = til.strip( '[Decimal(''),' )
+    tils.append(til)
+    fullnames.append(i.fullname)
+    amkas.append(i.amka)
+print(radevus)
+print(perioxes)
+print(eidikotites)
+print(fullnames)
+print(tils)
 # Create your views here.
 
 def handler400(request):
@@ -26,26 +47,17 @@ def handler500(request):
 
 def radevou(request, username):
     user = User.objects.get(username=username)
-    radevus = []
-    giatroi = Giatroi.objects.all()
-    eidikotites = []
-    perioxes = []
-    tils = []
-    fullnames = []
-    amkas = []
-    for i in giatroi:
-        radevus.append(i.radevous)
-        eidikotites.append(i.eidikotita)
-        perioxes.append(i.perioxi)
-        tils.append(i.til)
-        fullnames.append(i.fullname)
-        amkas.append(i.amka)
 
-    print(radevus)
-    print(perioxes)
-    print(eidikotites)
-    print(fullnames)
-    print(tils)
+
+    if request.method == 'POST':
+        form = SetRadevou(request.POST)
+        if form.is_valid():
+            eidi = form.cleaned_data.get('eidi')
+            print(eidi)
+            return render(request, 'radevou.html', {'user': user, 'form': form})
+    else:
+        form = SetRadevou(request.POST)
+        return render(request, 'radevou.html', {'user': user})
 
 
 
@@ -55,7 +67,8 @@ def radevou(request, username):
 
 
 
-    return render(request, 'radevou.html', {'user': user})
+
+
 
 
 def resetpass(request):
