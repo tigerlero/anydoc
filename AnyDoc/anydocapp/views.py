@@ -24,17 +24,38 @@ def handler404(request):
 def handler500(request):
     return render(request, '500.html', status=500)
 
-def radevou(request):
+def radevou(request, username):
+    user = User.objects.get(username=username)
     radevus = []
-    giatroi = []
-    giatroi = Giatroi.objects
-    print(giatroi)
+    giatroi = Giatroi.objects.all()
+    eidikotites = []
+    perioxes = []
+    tils = []
+    fullnames = []
+    amkas = []
+    for i in giatroi:
+        radevus.append(i.radevous)
+        eidikotites.append(i.eidikotita)
+        perioxes.append(i.perioxi)
+        tils.append(i.til)
+        fullnames.append(i.fullname)
+        amkas.append(i.amka)
+
+    print(radevus)
+    print(perioxes)
+    print(eidikotites)
+    print(fullnames)
+    print(tils)
 
 
 
 
 
-    return render(request, 'radevou.html')
+
+
+
+
+    return render(request, 'radevou.html', {'user': user})
 
 
 def resetpass(request):

@@ -29,5 +29,5 @@ class Giatroi(models.Model):
     radevous = models.TextField(max_length=3000)
 
     def __str__(self):
-        return self.fullname + " " + self.amka +" "+self.eidikotita+" "+self.til+" "+self.perioxi +" "+self.radevous
+        return self.fullname +" "+self.eidikotita+" "+self.perioxi +" "+self.radevous
 
