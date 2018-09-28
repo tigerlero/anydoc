@@ -4,11 +4,24 @@
 {% block title %} {% endblock %}
 
 {% block content %}
-<form method="post" novalidate>
+<div id="homediv" style="width: 98%; padding-right:1%; padding-left:1%; padding-top: 1%; float: right;">
+<form action="{% url 'radevou' %}" method="post" >
   {% csrf_token %}
-  <table border="1">
-    {{ form }}
-  </table>
+   {% for field in form %}
+
+      <div class="form-group">
+        {% if field.errors %}
+            <small><ul class="alert alert-warning" style="border-radius:0px; border:0">{{ field.errors }}</ul></small>
+        {% endif %}
+
+        {{ field.label_tag }} {{ field }}
+        <br>
+        <p></p>
+        {% if field.help_text %}
+          <small><ul  style="border-radius:0px; border:0">{{ field.help_text|safe }}</ul></small>
+        {% endif %}
+      </div>
+    {% endfor %}
   <button type="submit">Submit</button>
 </form>
 </div>

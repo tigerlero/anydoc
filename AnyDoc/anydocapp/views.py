@@ -3,31 +3,27 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegFrom, ResetPasswordForm, UpdateRadevou, SetRadevou
-from .models import Profile, Radevou, Giatroi
+from .forms import UserRegFrom, ResetPasswordForm, UpdateRadevou, Eidi
+from .models import Profile, Radevou, Giatroi, Eid
 
-radevus = []
-giatroi = Giatroi.objects.all()
-eidikotites = []
-perioxes = []
-tils = []
-fullnames = []
-amkas = []
-for i in giatroi:
-    radevus.append(i.radevous)
-    eidikotites.append(i.eidikotita)
-    perioxes.append(i.perioxi)
-    til = i.til
-    til = str(til)
-    til = til.strip( '[Decimal(''),' )
-    tils.append(til)
-    fullnames.append(i.fullname)
-    amkas.append(i.amka)
-print(radevus)
-print(perioxes)
-print(eidikotites)
-print(fullnames)
-print(tils)
+#radevus = []
+#giatroi = Giatroi.objects.all()
+#eidikotites = []
+#perioxes = []
+#tils = []
+#fullnames = []
+#amkas = []
+#for i in giatroi:
+#    radevus.append(i.radevous)
+#    eidikotites.append(i.eidikotita)
+#    perioxes.append(i.perioxi)
+#    til = i.til
+#    til = str(til)
+#    til = til.strip( '[Decimal(''),' )
+#    tils.append(til)
+#    fullnames.append(i.fullname)
+#    amkas.append(i.amka)
+
 # Create your views here.
 
 def handler400(request):
@@ -45,19 +41,25 @@ def handler404(request):
 def handler500(request):
     return render(request, '500.html', status=500)
 
-def radevou(request, username):
-    user = User.objects.get(username=username)
+def radevou(request):
+    users = User.objects.all
 
-
-    if request.method == 'POST':
-        form = SetRadevou(request.POST)
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = Eidi(request.POST)
         if form.is_valid():
-            eidi = form.cleaned_data.get('eidi')
-            print(eidi)
-            return render(request, 'radevou.html', {'user': user, 'form': form})
+            #e = form.cleaned_data.get('eidi')
+            form.save()
+
+            #print(e)
+            return render(request, 'home.html', { 'users': users})
+        else:
+            return render(request, 'radevou.html', { 'form': form, 'users':users})
+    elif request.method == 'GET' and request.user.is_authenticated:
+        form = Eidi()
+        return render(request, 'radevou.html', {'form': form, 'users':users})
     else:
-        form = SetRadevou(request.POST)
-        return render(request, 'radevou.html', {'user': user})
+
+        return render(request, 'home.html',)
 
 
 

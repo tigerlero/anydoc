@@ -18,7 +18,15 @@ class Radevou(models.Model):
 
 
     def __str__(self):
-        return self.user.username + " " + self.title + " " + self.description+" "+self.radevou
+        return self.user.username
+
+
+class Eid(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Giatroi(models.Model):
     fullname = models.CharField(max_length=50)
