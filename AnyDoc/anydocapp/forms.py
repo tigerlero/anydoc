@@ -83,7 +83,7 @@ r=tuple(r)
 print(r)
 
 
-class Eidi(forms.Form):
+class Eidi(forms.ModelForm):
     #eidi = forms.MultipleChoiceField(
     #    required=False,
     #    widget=forms.CheckboxSelectMultiple,
@@ -108,5 +108,8 @@ class Eidi(forms.Form):
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=r, required=True)
+    class Meta:
+        model = Eid
+        fields = ['eidi', 'perioxi', 'fn', 'ra']
 
 

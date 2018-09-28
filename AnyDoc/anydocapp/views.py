@@ -43,12 +43,23 @@ def handler500(request):
 
 def radevou(request):
     users = User.objects.all
-
+    giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
-        form = Eidi(request.POST)
+        form = Eid(request.POST)
         if form.is_valid():
-            #e = form.cleaned_data.get('eidi')
+            ei = form.cleaned_data.get('eidi')
+            peri = form.cleaned_data.get('perioxi')
+            full = form.cleaned_data.get('fn')
+            r = form.cleaned_data.get('ra')
+            print(ei)
+            print(peri)
+            print(full)
+            print(r)
+
+
+
             form.save()
+
 
             #print(e)
             return render(request, 'home.html', { 'users': users})
