@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegFrom, ResetPasswordForm, UpdateRadevou, Eidi
+from .forms import UserRegFrom, ResetPasswordForm, UpdateRadevou, Eidi, Ep
 from .models import Profile, Radevou, Giatroi, Eid
 
 #radevus = []
@@ -49,6 +49,63 @@ def radevou(request):
         if form.is_valid():
             ei = form.cleaned_data.get('eidi')
             peri = form.cleaned_data.get('perioxi')
+            print(ei)
+            print(peri)
+
+
+
+
+            form.save()
+
+            radevou(request, ei, peri)
+            #print(e)
+            return render(request, 'home.html', { 'users': users})
+        else:
+            return render(request, 'radevou.html', { 'form': form, 'users':users})
+    elif request.method == 'GET' and request.user.is_authenticated:
+        form = Eidi()
+        return render(request, 'radevou.html', {'form': form, 'users':users})
+    else:
+
+        return render(request, 'home.html',)
+
+def radevou(request, fullname, eidikotita, perioxi):
+    users = User.objects.all
+    giatroi = Giatroi.objects.all
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = Eid(request.POST)
+        if form.is_valid():
+            full = form.cleaned_data.get('fn')
+            r = form.cleaned_data.get('ra')
+
+            print(full)
+            print(r)
+
+
+
+            form.save()
+
+
+            #print(e)
+            return render(request, 'home.html', { 'users': users})
+        else:
+            return render(request, 'radevou.html', { 'form': form, 'users':users})
+    elif request.method == 'GET' and request.user.is_authenticated:
+        form = Eidi()
+        return render(request, 'radevou.html', {'form': form, 'users':users})
+    else:
+
+        return render(request, 'home.html',)
+
+
+def fradevou(request, radevou):
+    users = User.objects.all
+    giatroi = Giatroi.objects.all
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = Eid(request.POST)
+        if form.is_valid():
+            ei = form.cleaned_data.get('eidi')
+            peri = form.cleaned_data.get('perioxi')
             full = form.cleaned_data.get('fn')
             r = form.cleaned_data.get('ra')
             print(ei)
@@ -73,6 +130,36 @@ def radevou(request):
         return render(request, 'home.html',)
 
 
+def radevou(request, eidikotita, perioxi):
+    users = User.objects.all
+    giatroi = Giatroi.objects.all
+    if request.method == 'POST' and request.user.is_authenticated:
+        form = Eid(request.POST)
+        if form.is_valid():
+            ei = form.cleaned_data.get('eidi')
+            peri = form.cleaned_data.get('perioxi')
+            full = form.cleaned_data.get('fn')
+            r = form.cleaned_data.get('ra')
+            print(ei)
+            print(peri)
+            print(full)
+            print(r)
+
+
+
+            form.save()
+
+
+            #print(e)
+            return render(request, 'home.html', { 'users': users})
+        else:
+            return render(request, 'radevou.html', { 'form': form, 'users':users})
+    elif request.method == 'GET' and request.user.is_authenticated:
+        form = Eidi()
+        return render(request, 'radevou.html', {'form': form, 'users':users})
+    else:
+
+        return render(request, 'home.html',)
 
 
 

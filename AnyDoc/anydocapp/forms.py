@@ -83,6 +83,82 @@ r=tuple(r)
 print(r)
 
 
+class Ep(forms.Form):
+    #eidi = forms.MultipleChoiceField(
+    #    required=False,
+    #    widget=forms.CheckboxSelectMultiple,
+    #    choices=FAVORITE_COLORS_CHOICES,
+    #)
+    eidi = forms.ChoiceField(label="Specialties",
+                                       widget=forms.Select(attrs={'class': 'form-control',
+                                                                  'data-toggle': 'select'}),
+                                       choices=e, required=True)
+
+    perioxi = forms.ChoiceField(label="Areas",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=p, required=True)
+
+
+class Eidi(forms.ModelForm):
+    #eidi = forms.MultipleChoiceField(
+    #    required=False,
+    #    widget=forms.CheckboxSelectMultiple,
+    #    choices=FAVORITE_COLORS_CHOICES,
+    #)
+    eidi = forms.ChoiceField(label="Specialties",
+                                       widget=forms.Select(attrs={'class': 'form-control',
+                                                                  'data-toggle': 'select'}),
+                                       choices=e, required=True)
+
+    perioxi = forms.ChoiceField(label="Areas",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=p, required=True)
+
+    fn = forms.ChoiceField(label="Fullnames",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=f, required=True)
+
+    ra = forms.ChoiceField(label="Dates",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=r, required=True)
+    class Meta:
+        model = Eid
+        fields = ['eidi', 'perioxi', 'fn', 'ra']
+
+class Eidi(forms.ModelForm):
+    #eidi = forms.MultipleChoiceField(
+    #    required=False,
+    #    widget=forms.CheckboxSelectMultiple,
+    #    choices=FAVORITE_COLORS_CHOICES,
+    #)
+    eidi = forms.ChoiceField(label="Specialties",
+                                       widget=forms.Select(attrs={'class': 'form-control',
+                                                                  'data-toggle': 'select'}),
+                                       choices=e, required=True)
+
+    perioxi = forms.ChoiceField(label="Areas",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=p, required=True)
+
+    fn = forms.ChoiceField(label="Fullnames",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=f, required=True)
+
+    ra = forms.ChoiceField(label="Dates",
+                             widget=forms.Select(attrs={'class': 'form-control',
+                                                        'data-toggle': 'select'}),
+                             choices=r, required=True)
+    class Meta:
+        model = Eid
+        fields = ['eidi', 'perioxi', 'fn', 'ra']
+
+
 class Eidi(forms.ModelForm):
     #eidi = forms.MultipleChoiceField(
     #    required=False,
