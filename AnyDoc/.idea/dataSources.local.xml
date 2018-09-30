@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="fbwbicbf@horton.elephantsql.com" uuid="2e222829-e165-4d93-9ce1-78acc5986a50">
+      <database-info product="PostgreSQL" version="9.4.1" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>fbwbicbf</user-name>
+      <introspection-schemas>fbwbicbf:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>
