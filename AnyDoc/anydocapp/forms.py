@@ -11,8 +11,10 @@ fullnames = []
 amkas = []
 for i in giatroi:
     rad = str(i.radevous)
-    for j in rad:
-        radevus.append(rad)
+    rarray = rad.split(",")
+    for j in rarray:
+        print(j)
+        radevus.append(j)
     eidik = str(i.eidikotita)
     eidikotites.append(eidik)
     peri = str(i.perioxi)
@@ -73,6 +75,7 @@ a = dict((k,k) for k in amkas)
 a = a.items()
 a=tuple(a)
 print(a)
+
 
 r = dict((k,k) for k in radevus)
 r = r.items()
