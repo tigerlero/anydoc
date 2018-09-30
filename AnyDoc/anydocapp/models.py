@@ -1,27 +1,27 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
-# Create your models here.
 
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     radevous = models.TextField(max_length=3001)
     def __str__(self):
-        return self.user.username
+        return self.user.username + " " + self.radevous
 
 
 class Radevou(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=46)
-    description = models.TextField(max_length=3001)
+    id = models.AutoField(primary_key=True, default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE )
+    title = models.CharField(max_length=46,default="")
+    description = models.TextField(max_length=3001,default="")
     eidi = models.CharField(max_length=80, default="")
     peri = models.CharField(max_length=80, default="")
     fu = models.CharField(max_length=50, default="")
-    radevou = models.TextField(default=None, blank=False, null=False, primary_key = True)
+    radevou = models.TextField(default="", max_length=3001)
 
     def __str__(self):
-        return self.user.username
+        return self.user.username + " " + self.radevou
 
 
 class Giatroi(models.Model):

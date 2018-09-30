@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'AnyDoc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fbwbicbf',
-        'USER': 'fbwbicbf',
-        'PASSWORD': 'h0ZmBqWcqWN26TQutyixkh66osyEMSKV',
-        'HOST': 'horton.elephantsql.com',
+        'NAME': 'db3ohdpv5korh',
+        'USER': 'isjnzpgkliqpfj',
+        'PASSWORD': '2d23330f76505e420ccb67062c291d498dbc39dbe7bb68efb2b444a40d80a005',
+        'HOST': 'ec2-54-217-218-80.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
