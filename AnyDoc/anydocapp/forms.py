@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Profile, Radevou, Giatroi
 
-radevus = []
+radevus=[]
 giatroi = Giatroi.objects.all()
 eidikotites = []
 perioxes = []

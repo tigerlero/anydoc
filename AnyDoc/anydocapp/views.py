@@ -88,7 +88,6 @@ def radevou2(request):
 
         return render(request, 'home.html',)
 
-
 def radevou3(request):
     users = User.objects.all
     giatroi = Giatroi.objects.all
@@ -134,8 +133,6 @@ def radevou4(request):
 
 
             form.save()
-
-
             #print(e)
             return render(request, 'radevus.html', { 'users': users})
         else:
@@ -146,18 +143,6 @@ def radevou4(request):
     else:
 
         return render(request, 'home.html',)
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def resetpass(request):
@@ -179,7 +164,6 @@ def resetpass(request):
         return render(request, 'signin.html', )
 
 
-
 def signin(request):
     if request.method == 'GET':
         return render(request, 'signin.html', )
@@ -195,6 +179,7 @@ def signin(request):
             return render(request, 'signin.html', {'error': error,})
     else:
         return render(request, 'home.html',)
+
 
 
 def signup(request):
@@ -227,26 +212,16 @@ def signout(request):
     logout(request)
     return render(request, 'signin.html')
 
-
 def home(request):
-    context = {
 
-
-    }
-    return render(request, 'home.html', context)
+    return render(request, 'home.html')
 
 def radevus(request):
 
-    context = {
-    }
-    return render(request, 'radevus.html', context)
-
+    return render(request, 'radevus.html')
 
 def contact(request):
-    context = {
 
-
-    }
-    return render(request, 'contact.html', context)
+    return render(request, 'contact.html')
 
 

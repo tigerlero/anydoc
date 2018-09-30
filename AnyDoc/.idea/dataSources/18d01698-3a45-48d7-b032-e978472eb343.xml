@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="uwmbzahm@horton.elephantsql.com">
+<dataSource name="mmcbuott@horton.elephantsql.com">
   <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.9">
     <root id="1">
       <ServerVersion>9.4.1</ServerVersion>

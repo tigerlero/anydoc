@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'AnyDoc.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'uwmbzahm',
-        'USER': 'uwmbzahm',
-        'PASSWORD': 'akKquKRsadb5sYT-dFBSLsnTrzKBy1gG',
+        'NAME': 'fbwbicbf',
+        'USER': 'fbwbicbf',
+        'PASSWORD': 'h0ZmBqWcqWN26TQutyixkh66osyEMSKV',
         'HOST': 'horton.elephantsql.com',
         'PORT': '5432',
     }
