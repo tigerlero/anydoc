@@ -158,7 +158,7 @@ def radevou4(request):
             description = form.cleaned_data.get('description')
             user = request.user
             p = request.user.profile
-            r = Radevou(user_id=user.id)
+            r = request.user.radevou
             r.title=title
             r.description=description
             r.radevou=rad
@@ -240,6 +240,8 @@ def signup(request):
             user = authenticate(username=uname, password=pwd)
             profile = Profile(user_id=user.id)
             profile.save()
+            radevou = Radevou(user_id=user.id)
+            radevou.save()
             login(request, user)
             return render(request, 'home.html', )
 

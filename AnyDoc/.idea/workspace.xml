@@ -111,8 +111,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/anydocapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
-              <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="16" />
+            <state relative-caret-position="510">
+              <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -668,8 +668,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/anydocapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="178" column="16" selection-start-line="178" selection-start-column="16" selection-end-line="178" selection-end-column="16" />
+        <state relative-caret-position="510">
+          <caret line="243" column="25" selection-start-line="243" selection-start-column="25" selection-end-line="243" selection-end-column="25" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
