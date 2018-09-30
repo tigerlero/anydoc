@@ -13,19 +13,15 @@ class Radevou(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=46)
     description = models.TextField(max_length=3000)
-    perioxi = models.CharField(max_length=46)
-    radevou = models.DateField(default=None, blank=False, null=False)
-
-
-    def __str__(self):
-        return self.user.username
-
-
-class Eid(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    eidi = models.CharField(max_length=80, default="")
+    peri = models.CharField(max_length=80, default="")
+    fu = models.CharField(max_length=50, default="")
+    radevou = models.TextField(default=None, blank=False, null=False, primary_key = True)
 
     def __str__(self):
         return self.user.username
+
+
 
 
 class Giatroi(models.Model):

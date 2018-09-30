@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django import forms
-from .models import Profile, Radevou, Giatroi, Eid
+from .models import Profile, Radevou, Giatroi
 
 radevus = []
 giatroi = Giatroi.objects.all()
@@ -11,7 +11,8 @@ fullnames = []
 amkas = []
 for i in giatroi:
     rad = str(i.radevous)
-    radevus.append(rad)
+    for j in rad:
+        radevus.append(rad)
     eidik = str(i.eidikotita)
     eidikotites.append(eidik)
     peri = str(i.perioxi)
@@ -46,10 +47,6 @@ class ResetPasswordForm(forms.ModelForm):
         model = User
         fields = ['password']
 
-class UpdateRadevou(forms.ModelForm):
-    class Meta:
-        model = Radevou
-        fields = ['title', 'description', 'radevou', 'perioxi']
 
 
 e = dict((k,k) for k in eidikotites)
@@ -84,11 +81,7 @@ print(r)
 
 
 class Ep(forms.Form):
-    #eidi = forms.MultipleChoiceField(
-    #    required=False,
-    #    widget=forms.CheckboxSelectMultiple,
-    #    choices=FAVORITE_COLORS_CHOICES,
-    #)
+
     eidi = forms.ChoiceField(label="Specialties",
                                        widget=forms.Select(attrs={'class': 'form-control',
                                                                   'data-toggle': 'select'}),
@@ -100,92 +93,28 @@ class Ep(forms.Form):
                              choices=p, required=True)
 
 
-class Eidi(forms.ModelForm):
-    #eidi = forms.MultipleChoiceField(
-    #    required=False,
-    #    widget=forms.CheckboxSelectMultiple,
-    #    choices=FAVORITE_COLORS_CHOICES,
-    #)
-    eidi = forms.ChoiceField(label="Specialties",
-                                       widget=forms.Select(attrs={'class': 'form-control',
-                                                                  'data-toggle': 'select'}),
-                                       choices=e, required=True)
-
-    perioxi = forms.ChoiceField(label="Areas",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=p, required=True)
+class Fu(forms.Form):
 
     fn = forms.ChoiceField(label="Fullnames",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=f, required=True)
 
-    ra = forms.ChoiceField(label="Dates",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=r, required=True)
-    class Meta:
-        model = Eid
-        fields = ['eidi', 'perioxi', 'fn', 'ra']
 
-class Eidi(forms.ModelForm):
-    #eidi = forms.MultipleChoiceField(
-    #    required=False,
-    #    widget=forms.CheckboxSelectMultiple,
-    #    choices=FAVORITE_COLORS_CHOICES,
-    #)
-    eidi = forms.ChoiceField(label="Specialties",
-                                       widget=forms.Select(attrs={'class': 'form-control',
-                                                                  'data-toggle': 'select'}),
-                                       choices=e, required=True)
 
-    perioxi = forms.ChoiceField(label="Areas",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=p, required=True)
 
-    fn = forms.ChoiceField(label="Fullnames",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=f, required=True)
+class Ra(forms.Form):
+
 
     ra = forms.ChoiceField(label="Dates",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=r, required=True)
+
+
+class Rade(forms.ModelForm):
     class Meta:
-        model = Eid
-        fields = ['eidi', 'perioxi', 'fn', 'ra']
-
-
-class Eidi(forms.ModelForm):
-    #eidi = forms.MultipleChoiceField(
-    #    required=False,
-    #    widget=forms.CheckboxSelectMultiple,
-    #    choices=FAVORITE_COLORS_CHOICES,
-    #)
-    eidi = forms.ChoiceField(label="Specialties",
-                                       widget=forms.Select(attrs={'class': 'form-control',
-                                                                  'data-toggle': 'select'}),
-                                       choices=e, required=True)
-
-    perioxi = forms.ChoiceField(label="Areas",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=p, required=True)
-
-    fn = forms.ChoiceField(label="Fullnames",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=f, required=True)
-
-    ra = forms.ChoiceField(label="Dates",
-                             widget=forms.Select(attrs={'class': 'form-control',
-                                                        'data-toggle': 'select'}),
-                             choices=r, required=True)
-    class Meta:
-        model = Eid
-        fields = ['eidi', 'perioxi', 'fn', 'ra']
+        model = Radevou
+        fields = ['title' ,'description' ]
 
 
