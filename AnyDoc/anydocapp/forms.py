@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Profile, Radevou, Giatroi
 
-radevus=[]
+radevus = []
 giatroi = Giatroi.objects.all()
 eidikotites = []
 perioxes = []
@@ -84,7 +84,6 @@ print(r)
 
 
 class Ep(forms.Form):
-
     eidi = forms.ChoiceField(label="Specialties",
                                        widget=forms.Select(attrs={'class': 'form-control',
                                                                   'data-toggle': 'select'}),
@@ -97,7 +96,6 @@ class Ep(forms.Form):
 
 
 class Fu(forms.Form):
-
     fn = forms.ChoiceField(label="Fullnames",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
@@ -107,8 +105,6 @@ class Fu(forms.Form):
 
 
 class Ra(forms.Form):
-
-
     ra = forms.ChoiceField(label="Dates",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),

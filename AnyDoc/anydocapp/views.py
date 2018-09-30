@@ -25,12 +25,43 @@ from .models import Profile, Radevou, Giatroi
 #    amkas.append(i.amka)
 
 # Create your views here.
-eid=""
+eid = ""
 perio=""
 ful=""
 rad=""
 t=""
 d=""
+
+def ex3(a,b):
+    global eid
+    global perio
+    eid = a
+    perio = b
+    print(a)
+    print(b)
+
+def ex2(a):
+    global ful
+    ful = a
+    print(a)
+
+def ex1(a):
+    global rad
+    rad = a
+    print(a)
+
+def ex4():
+    global eid
+    global perio
+    global ful
+    global rad
+    rad = ""
+    ful = ""
+    eid = ""
+    perio = ""
+
+
+
 def handler400(request):
     return render(request, '400.html', status=400)
 
@@ -56,13 +87,14 @@ def radevou(request):
             perio = form.cleaned_data.get('perioxi')
             print(eid)
             print(perio)
-            return render(request, 'radevou2.html', {'users': users,})
+            ex3(eid,perio)
+            return render(request, 'radevou2.html', {'users':users})
 
         else:
             return render(request, 'radevou.html', { 'form': form, 'users':users})
     elif request.method == 'GET' and request.user.is_authenticated:
         form = Ep()
-        return render(request, 'radevou2.html', {'form': form, 'users': users})
+        return render(request, 'radevou.html', {'form': form, 'users': users})
     else:
 
         return render(request, 'home.html',)
@@ -75,11 +107,14 @@ def radevou2(request):
         form = Fu(request.POST)
         if form.is_valid():
             ful = form.cleaned_data.get('fn')
-
+            print(eid)
+            print(perio)
             print(ful)
+            ex2(ful)
+
             return render(request, 'radevou3.html', { 'users': users,})
         else:
-            return render(request, 'radevou3.html', { 'form': form, 'users':users})
+            return render(request, 'radevou2.html', {'form': form, 'users': users})
     elif request.method == 'GET' and request.user.is_authenticated:
         form = Fu()
         return render(request, 'radevou2.html', {'form': form, 'users': users})
@@ -95,9 +130,8 @@ def radevou3(request):
         form = Ra(request.POST)
         if form.is_valid():
             rad = form.cleaned_data.get('ra')
-
             print(rad)
-
+            ex1(rad)
             #print(e)
             return render(request, 'radevou4.html', {'users': users, })
         else:
@@ -116,6 +150,10 @@ def radevou4(request):
     if request.method == 'POST' and request.user.is_authenticated:
         form = Rade(request.POST)
         if form.is_valid():
+            print(eid)
+            print(perio)
+            print(ful)
+            print(rad)
             title = form.cleaned_data.get('tilte')
             description = form.cleaned_data.get('description')
             user = request.user
@@ -128,17 +166,17 @@ def radevou4(request):
             r.peri=perio
             r.fu=ful
             r.save
-            print(r)
+            print(r.title)
             raaa = str(p.radevous) + " " + rad
             p.radevous=raaa
+            print(p.radevous)
             p.save()
-            for i in Giatroi.fullname:
-                if i == r.fu:
-                    if r.radevou in  i.radevous:
-                        g = Giatroi.objects.get(fullname=r.fu)
-                        g.radevous =  g.radevous.replace(r.radevou, " ")
-                        g.save()
-
+            print(r.fu)
+            g = Giatroi.objects.get(fullname=ful)
+            g.radevous =  g.radevous.replace(r.radevou, " ")
+            g.save()
+            print("SKATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            ex4()
             #print(e)
             return render(request, 'radevus.html', { 'users': users})
         else:
