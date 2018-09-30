@@ -118,22 +118,26 @@ def radevou4(request):
         if form.is_valid():
             title = form.cleaned_data.get('tilte')
             description = form.cleaned_data.get('description')
-            p = Profile
-            r = Radevou
+            user = request.user
+            p = request.user.profile
+            r = Radevou(user_id=user.id)
             r.title=title
             r.description=description
             r.radevou=rad
             r.eidi=eid
             r.peri=perio
             r.fu=ful
-            #r.save
+            r.save
             print(r)
             raaa = str(p.radevous) + " " + rad
             p.radevous=raaa
-            g = Giatroi
-            if rad in  g.radevous:
-                g.radevous =  g.radevous.replace(rad, " ")
-                g.save()
+            p.save()
+            for i in Giatroi.fullname:
+                if i == r.fu:
+                    if r.radevou in  i.radevous:
+                        g = Giatroi.objects.get(fullname=r.fu)
+                        g.radevous =  g.radevous.replace(r.radevou, " ")
+                        g.save()
 
             #print(e)
             return render(request, 'radevus.html', { 'users': users})
