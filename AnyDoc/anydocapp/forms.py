@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Radevou, Giatroi
 
-
 def ex2(a):
     global ful
     ful = a
@@ -13,7 +12,7 @@ def ex1(a):
     rad = a
     print(a)
 
-def formes():
+def formes(eee,ppp):
     #metavlites p eftiaksa gia to search
     global radevus
     global giatroi
@@ -85,34 +84,42 @@ def formes():
     print(pp)
 
 
-    fullnames = []
+    # print(fullnames)
+    # print("  names")
+    # print(e)
+    # print("  e")
+    # print(i.eidikotita)
+    # print("  ieidi")
+    # print(p)
+    # print("  p")
+    # print(i.perioxi)
+    # print("  iperi")
+
+
     for i in giatroi:
-        print(fullnames)
-        print("  names")
-        print(e)
-        print("  e")
         print(i.eidikotita)
-        print("  ieidi")
-        print(p)
-        print("  p")
         print(i.perioxi)
-        print("  iperi")
-        if i.eidikotita == e and i.perioxi == p:
-
+        print(eee)
+        print(ppp)
+        if i.eidikotita == eee and i.perioxi == ppp:
+            e=eee
+            p=ppp
             full = str(i.fullname)
-            fullnames.append(full)
-
-
-    radevus = []
-    for i in giatroi:
-        if i.fullname == f:
-            rad = str(i.radevous)
-            rarray = rad.split(",")
-            for j in rarray:
-                print(j)
-                if (j == "") or (j == " "):
-                    continue
-                radevus.append(j)
+            if full != "" and full != " ":
+                print(full)
+                fullnames.append(full)
+                print(fullnames)
+#
+    #radevus = []
+    #for i in giatroi:
+    #    if i.fullname == ful:
+    #        rad = str(i.radevous)
+    #        rarray = rad.split(",")
+    #        for j in rarray:
+    #            print(j)
+    #            if (j == "") or (j == " "):
+    #                continue
+    #            radevus.append(j)
 
 
     ff = dict((k, k) for k in fullnames)
@@ -136,6 +143,7 @@ def formes():
     rr = rr.items()
     rr = tuple(rr)
     print(rr)
+
 
 radevus = []
 giatroi = Giatroi.objects.all()
@@ -161,7 +169,7 @@ f = ""
 p = ""
 a = ""
 r = ""
-formes()
+formes("","")
 class UserRegFrom(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
     username = forms.DecimalField(max_digits=11, decimal_places=0, min_value=10000000000)
@@ -183,46 +191,46 @@ class ResetPasswordForm(forms.ModelForm):
 
 
 class Ep(forms.Form):
-    formes()
+    #formes()
     eidi = forms.ChoiceField(label="Specialties",
                                        widget=forms.Select(attrs={'class': 'form-control',
                                                                   'data-toggle': 'select'}),
                                        choices=ee, required=True)
-    global e
-    e = eidi
-    formes()
+    ##global e
+    ##e = eidi
+    ##formes()
 
     perioxi = forms.ChoiceField(label="Areas",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=pp, required=True)
-    global p
-    p = perioxi
-    formes()
+    #global p
+    #p = perioxi
+    #formes()
 
 
 class Fu(forms.Form):
-    formes()
+    formes(e,p)
     fn = forms.ChoiceField(label="Fullnames",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=ff, required=True)
-    global f
-    f = fn
-    formes()
+    #global f
+    #f = fn
+    #formes()
 
 
 
 
 class Ra(forms.Form):
-    formes()
+    #formes()
     ra = forms.ChoiceField(label="Dates",
                              widget=forms.Select(attrs={'class': 'form-control',
                                                         'data-toggle': 'select'}),
                              choices=rr, required=True)
-    global r
-    r = ra
-    formes()
+    #global r
+    #r = ra
+    #formes()
 
 
 class Rade(forms.ModelForm):
@@ -231,4 +239,4 @@ class Rade(forms.ModelForm):
         fields = ['title' ,'description' ]
 
 
-formes()
+#formes()
