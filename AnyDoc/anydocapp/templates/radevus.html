@@ -5,24 +5,31 @@
 
 {% block content %}
 <div id="homediv" style="width: 98%; padding-right:1%; padding-left:1%; padding-top: 1%; float: right;">
-<form action="{% url 'radevus' %}" method="post" >
-  {% csrf_token %}
-   {% for field in form %}
+    <div class="row">
 
-      <div class="form-group">
-        {% if field.errors %}
-            <small><ul class="alert alert-warning" style="border-radius:0px; border:0">{{ field.errors }}</ul></small>
-        {% endif %}
+    <div style="padding-left: 1%;padding-right: 1%;" class="row">
 
-        {{ field.label_tag }} {{ field }}
-        <br>
-        <p></p>
-        {% if field.help_text %}
-          <small><ul  style="border-radius:0px; border:0">{{ field.help_text|safe }}</ul></small>
-        {% endif %}
-      </div>
-    {% endfor %}
-  <button type="submit">Submit</button>
-</form>
+      {% for i in r %}
+     <div style=" padding:20px;font-size: 100%;" class="col-sm-4 col-md-3 col-bg-2">
+         Title: <br>
+          {{i.title}}<br>
+         Description: <br>
+          {{i.description}}<br>
+         Speciality: <br>
+          {{i.eidi}}<br>
+         Area: <br>
+          {{i.peri}}<br>
+         Fullname: <br>
+          {{i.fu}}<br>
+         Dates: <br>
+          {{i.radevou}}<br>
+
+        </div>{% endfor %}
+        </div>
+
+
 </div>
+
+    </div>
+
 {% endblock %}

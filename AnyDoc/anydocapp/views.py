@@ -173,37 +173,19 @@ def radevou4(request):
             global d
             global ids
             formes(eid, perio)
-            print(eid)
-            print(perio)
-            print(ful)
-            print(rad)
             t = form.cleaned_data.get('title')
             d = form.cleaned_data.get('description')
             user = request.user
             p = user.profile
             r = user.radevou_set.create(title=t, description=d, radevou=rad, eidi=eid, peri=perio, fu= ful)
-
-            #r.title=t
-            #r.description=d
-            #r.radevou=rad
-            #r.eidi=eid
-            #r.peri=perio
-            #r.fu=ful
-            #r.save
-            #print(r.title)
             raaa = str(p.radevous) + " " + rad
             p.radevous=raaa
-            print(p.radevous)
             p.save()
-            print(r.fu)
             g = Giatroi.objects.get(fullname=ful)
             g.radevous =  g.radevous.replace(r.radevou, "")
             g.save()
-            print("SKATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-
             ex4()
             formes(eid, perio)
-            #print(e)
             return HttpResponseRedirect(reverse('radevus'))
         else:
             return render(request, 'radevou4.html', { 'form': form, 'users':users})
@@ -211,7 +193,6 @@ def radevou4(request):
         form = Rade()
         return render(request, 'radevou4.html', {'form': form, 'users':users})
     else:
-
         return render(request, 'home.html',)
 
 
@@ -289,10 +270,20 @@ def home(request):
     return render(request, 'home.html')
 
 def radevus(request):
+    user = request.user
+    print(user)
+    r = user.radevou_set.all()
+    dates = []
+    for i in r:
+        dates.append(i.radevou)
+        print(dates)
+    print(r[1])
+    print(r)
 
 
 
-    return render(request, 'radevus.html')
+
+    return render(request, 'radevus.html', {'r':r,'user':user})
 
 def contact(request):
 

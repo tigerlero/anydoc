@@ -262,7 +262,7 @@ r = ""
 formes("","")
 class UserRegFrom(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
-    username = forms.DecimalField(max_digits=11, decimal_places=0, min_value=10000000000)
+    username = forms.DecimalField(max_digits=11, decimal_places=0, min_value=10000000000,error_messages={'required': '11 Digitis for AMKA!'})
 
     class Meta:
         model = User
