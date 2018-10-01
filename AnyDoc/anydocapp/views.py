@@ -3,28 +3,12 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu
+from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu, formes
 from .models import Profile, Radevou, Giatroi
 
-#radevus = []
-#giatroi = Giatroi.objects.all()
-#eidikotites = []
-#perioxes = []
-#tils = []
-#fullnames = []
-#amkas = []
-#for i in giatroi:
-#    radevus.append(i.radevous)
-#    eidikotites.append(i.eidikotita)
-#    perioxes.append(i.perioxi)
-#    til = i.til
-#    til = str(til)
-#    til = til.strip( '[Decimal(''),' )
-#    tils.append(til)
-#    fullnames.append(i.fullname)
-#    amkas.append(i.amka)
 
-# Create your views here.
+
+
 eid = ""
 perio=""
 ful=""
@@ -88,6 +72,7 @@ def radevou(request):
             print(eid)
             print(perio)
             ex3(eid,perio)
+            formes()
             return render(request, 'radevou2.html', {'users':users})
 
         else:
@@ -101,6 +86,7 @@ def radevou(request):
 
 
 def radevou2(request):
+    formes()
     users = User.objects.all
     giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
@@ -111,7 +97,7 @@ def radevou2(request):
             print(perio)
             print(ful)
             ex2(ful)
-
+            formes()
             return render(request, 'radevou3.html', { 'users': users,})
         else:
             return render(request, 'radevou2.html', {'form': form, 'users': users})
@@ -124,6 +110,7 @@ def radevou2(request):
 
 
 def radevou3(request):
+    formes()
     users = User.objects.all
     giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
@@ -133,6 +120,7 @@ def radevou3(request):
             print(rad)
             ex1(rad)
             #print(e)
+            formes()
             return render(request, 'radevou4.html', {'users': users, })
         else:
             return render(request, 'radevou3.html', {'form': form, 'users': users})
@@ -145,38 +133,46 @@ def radevou3(request):
 
 
 def radevou4(request):
+    formes()
     users = User.objects.all
     giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
         form = Rade(request.POST)
         if form.is_valid():
+            global eid
+            global perio
+            global ful
+            global rad
+            global t
+            global d
             print(eid)
             print(perio)
             print(ful)
             print(rad)
-            title = form.cleaned_data.get('tilte')
-            description = form.cleaned_data.get('description')
+            t = form.cleaned_data.get('title')
+            d = form.cleaned_data.get('description')
             user = request.user
-            p = request.user.profile
-            r = request.user.radevou
-            r.title=title
-            r.description=description
-            r.radevou=rad
-            r.eidi=eid
-            r.peri=perio
-            r.fu=ful
-            r.save
-            print(r.title)
+            p = user.profile
+            r = user.radevou_set.create(title=t, description=d, radevou=rad, eidi=eid, peri=perio, fu= ful)
+            #r.title=t
+            #r.description=d
+            #r.radevou=rad
+            #r.eidi=eid
+            #r.peri=perio
+            #r.fu=ful
+            #r.save
+            #print(r.title)
             raaa = str(p.radevous) + " " + rad
             p.radevous=raaa
             print(p.radevous)
             p.save()
             print(r.fu)
             g = Giatroi.objects.get(fullname=ful)
-            g.radevous =  g.radevous.replace(r.radevou, " ")
+            g.radevous =  g.radevous.replace(r.radevou, "")
             g.save()
             print("SKATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             ex4()
+            formes()
             #print(e)
             return render(request, 'radevus.html', { 'users': users})
         else:
@@ -240,8 +236,7 @@ def signup(request):
             user = authenticate(username=uname, password=pwd)
             profile = Profile(user_id=user.id)
             profile.save()
-            radevou = Radevou(user_id=user.id)
-            radevou.save()
+
             login(request, user)
             return render(request, 'home.html', )
 
@@ -264,6 +259,8 @@ def home(request):
     return render(request, 'home.html')
 
 def radevus(request):
+
+
 
     return render(request, 'radevus.html')
 

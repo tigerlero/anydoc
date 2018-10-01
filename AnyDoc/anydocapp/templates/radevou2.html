@@ -24,5 +24,13 @@
     {% endfor %}
   <button type="submit">Submit</button>
 </form>
+<select id="org" name="org_list" onChange="redirectUrl()">
+{% for org in organisation %}
+   <option value="{{org.id}}"
+       {% if org == current_org %}selected="selected"{% endif %}>
+       {{org.name|capfirst}}
+   </option>
+{% endfor %}
+</select>
 </div>
 {% endblock %}
