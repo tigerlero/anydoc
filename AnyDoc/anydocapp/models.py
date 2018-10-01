@@ -11,7 +11,7 @@ class Profile(models.Model):
 
 
 class Radevou(models.Model):
-    id = models.AutoField(primary_key=True, default=0)
+    id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE )
     title = models.CharField(max_length=46,default="")
     description = models.TextField(max_length=3001,default="")

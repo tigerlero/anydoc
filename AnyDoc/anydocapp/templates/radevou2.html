@@ -5,65 +5,22 @@
 
 {% block content %}
 <div id="homediv" style="width: 98%; padding-right:1%; padding-left:1%; padding-top: 1%; float: right;">
-<form action="{% url 'radevou2' %}" method="post" >
-  {% csrf_token %}
-   {% for field in form %}
 
-      <div class="form-group">
-        {% if field.errors %}
-            <small><ul class="alert alert-warning" style="border-radius:0px; border:0">{{ field.errors }}</ul></small>
-        {% endif %}
-
-        {{ field.label_tag }} {{ field }}
-        <br>
-        <p></p>
-        {% if field.help_text %}
-          <small><ul  style="border-radius:0px; border:0">{{ field.help_text|safe }}</ul></small>
-        {% endif %}
-      </div>
-    {% endfor %}
-  <button type="submit">Submit</button>
-</form>
-<select id="org" name="org_list" onChange="redirectUrl()">
-{% for org in organisation %}
-   <option value="{{org.id}}"
-       {% if org == current_org %}selected="selected"{% endif %}>
-       {{org.name|capfirst}}
+<form action="/radevou2/" method="post" >
+{% csrf_token %}
+ <label for="id_fn">Dates:</label>
+<select class="form-control" id="id_fn" name="fn" data-toggle="select">
+{% for f in giatroi %}
+    {% if f.eidikotita == eid and f.perioxi == perio%}
+   <option value="{{f.fullname}}"
+       {% if f == current_f %}selected="selected"{% endif %}>
+       {{f.fullname}}
    </option>
+    {% endif %}
 {% endfor %}
 </select>
-</div>
-
-    <form action="/radevou2/" method="post" >
-  <input type="hidden" name="csrfmiddlewaretoken" value="JgfgT8cPnkps4vnuohZDGuhBGblnB91G9aQNBUlbN8mbEVKhW5TNc30PwXz6c2Iz">
-
-
-      <div class="form-group">
-
-
-        <label for="id_eidi">Specialties:</label> <select name="eidi" class="form-control" data-toggle="select" id="id_eidi">
-  <option value="Otolaryngologist">Otolaryngologist</option>
-
-</select>
-        <br>
-        <p></p>
-
-      </div>
-
-
-      <div class="form-group">
-
-
-        <label for="id_perioxi">Areas:</label> <select name="perioxi" class="form-control" data-toggle="select" id="id_perioxi">
-  <option value="Ano Patisia, Athens">Ano Patisia, Athens</option>
-
-</select>
-        <br>
-        <p></p>
-
-      </div>
-
-  <button type="submit">Submit</button>
+ <button type="submit">Submit</button>
 </form>
 </div>
+
 {% endblock %}

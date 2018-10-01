@@ -12,6 +12,96 @@ def ex1(a):
     rad = a
     print(a)
 
+def formes2(eee,ppp,fff):
+    #metavlites p eftiaksa gia to search
+    global radevus
+    global giatroi
+    global eidikotites
+    global perioxes
+    global tils
+    global fullnames
+    global amkas
+    global e
+    global f
+    global t
+    global p
+    global a
+    global r
+    #metavlites p einai apo formes
+    global eid
+    global perio
+    global ful
+    global rad
+    global t
+    global d
+    global ee
+    global ff
+    global pp
+    global rr
+    global aa
+    global tt
+    radevus = []
+    giatroi = Giatroi.objects.all()
+    eidikotites = []
+    perioxes = []
+    tils = []
+    fullnames = []
+    amkas = []
+    for i in giatroi:
+        rad = str(i.radevous)
+        rarray = rad.split(",")
+        for j in rarray:
+            print(j)
+            if(j == "") or (j==" "):
+                continue
+            radevus.append(j)
+        eidik = str(i.eidikotita)
+        eidikotites.append(eidik)
+        peri = str(i.perioxi)
+        perioxes.append(peri)
+        til = i.til
+        til = str(til)
+        til = til.strip( '[Decimal(''),' )
+        tils.append(til)
+        full = str(i.fullname)
+        fullnames.append(full)
+        am = i.amka
+        am = str(am)
+        am = am.strip('[Decimal(''),')
+        amkas.append(am)
+
+
+
+    for i in giatroi:
+        print(i.eidikotita)
+        print(i.perioxi)
+        print(eee)
+        print(ppp)
+        if i.eidikotita == eee and i.perioxi == ppp:
+            e=eee
+            p=ppp
+            full = str(i.fullname)
+            if full != "" and full != " ":
+                print(full)
+                fullnames.append(full)
+                print(fullnames)
+#
+    radevus = []
+    for i in giatroi:
+        if i.fullname == fff:
+            rad = str(i.radevous)
+            rarray = rad.split(",")
+            for j in rarray:
+                print(j)
+                if (j == "") or (j == " "):
+                    continue
+                radevus.append(j)
+            r=radevus
+    return r
+
+
+
+
 def formes(eee,ppp):
     #metavlites p eftiaksa gia to search
     global radevus

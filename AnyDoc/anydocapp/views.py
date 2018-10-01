@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu, formes
+from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu, formes,formes2
 from .models import Profile, Radevou, Giatroi
 
 
@@ -13,7 +13,7 @@ from .models import Profile, Radevou, Giatroi
 eid = ""
 perio=""
 ful=""
-rad=""
+rad = ""
 t=""
 d=""
 
@@ -44,7 +44,6 @@ def ex4():
     ful = ""
     eid = ""
     perio = ""
-
 #def epistrofi():
 #    global eid
 #    global perio
@@ -100,6 +99,8 @@ def radevou(request):
 
 def radevou2(request):
     formes(eid, perio)
+    global rad
+
     users = User.objects.all
     giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
@@ -112,23 +113,28 @@ def radevou2(request):
             print(perio)
             print(ful)
             ex2(ful)
-            formes(eid, perio)
+            rad = formes2(eid, perio,ful)
+            print("rad")
+
             return HttpResponseRedirect(reverse('radevou3'))
-            return render(request, 'radevou3.html', { 'users': users,})
         else:
             formes(eid, perio)
-            return render(request, 'radevou2.html', {'form': form, 'users': users})
+            return render(request, 'radevou2.html', {'form': form, 'users': users,'eid':eid, 'perio':perio,'giatroi':giatroi,'rad':rad})
     elif request.method == 'GET' and request.user.is_authenticated:
         formes(eid, perio)
         form = Fu()
-        return render(request, 'radevou2.html', {'form': form, 'users': users})
+
+        return render(request, 'radevou2.html', {'form': form, 'users': users,'eid':eid, 'perio':perio,'giatroi':giatroi,'rad':rad})
     else:
 
         return render(request, 'home.html',)
 
 
 def radevou3(request):
-    formes(eid, perio)
+    global rad
+    rad = formes2(eid, perio, ful)
+    print("rad")
+    print(rad)
     users = User.objects.all
     giatroi = Giatroi.objects.all
     if request.method == 'POST' and request.user.is_authenticated:
@@ -138,13 +144,15 @@ def radevou3(request):
             print(rad)
             ex1(rad)
             #print(e)
-            formes(eid, perio)
+            formes2(eid, perio, rad)
+
             return HttpResponseRedirect(reverse('radevou4'))
         else:
-            return render(request, 'radevou3.html', {'form': form, 'users': users})
+            return render(request, 'radevou3.html', {'form': form, 'users': users,'rad' : rad,'ful':ful})
     elif request.method == 'GET' and request.user.is_authenticated:
+        formes2(eid, perio, rad)
         form = Ra()
-        return render(request, 'radevou3.html', {'form': form, 'users': users})
+        return render(request, 'radevou3.html', {'form': form, 'users': users,'rad' :rad,'ful':ful})
     else:
 
         return render(request, 'home.html',)
@@ -163,6 +171,7 @@ def radevou4(request):
             global rad
             global t
             global d
+            global ids
             formes(eid, perio)
             print(eid)
             print(perio)
@@ -173,6 +182,7 @@ def radevou4(request):
             user = request.user
             p = user.profile
             r = user.radevou_set.create(title=t, description=d, radevou=rad, eidi=eid, peri=perio, fu= ful)
+
             #r.title=t
             #r.description=d
             #r.radevou=rad
@@ -195,7 +205,6 @@ def radevou4(request):
             formes(eid, perio)
             #print(e)
             return HttpResponseRedirect(reverse('radevus'))
-            return render(request, 'radevus.html', { 'users': users})
         else:
             return render(request, 'radevou4.html', { 'form': form, 'users':users})
     elif request.method == 'GET' and request.user.is_authenticated:
