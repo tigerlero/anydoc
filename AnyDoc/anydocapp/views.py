@@ -42,59 +42,8 @@ rad = ""
 t=""
 d=""
 til =""
-w1=[]
-w2=[]
-w3=[]
-w4=[]
-w5=[]
-w6=[]
-w7=[]
-w8=[]
-w9=[]
-w10=[]
-w11=[]
-w12=[]
-w13=[]
-w14=[]
-w15=[]
-w16=[]
-w17=[]
-w18=[]
-w19=[]
-w20=[]
-w21=[]
-w22=[]
-w23=[]
-w24=[]
-w25=[]
-w26=[]
-w27=[]
-w28=[]
-w29=[]
-w30=[]
-w31=[]
-w32=[]
-w33=[]
-w34=[]
-w35=[]
-w36=[]
-w37=[]
-w38=[]
-w39=[]
-w40=[]
-w41=[]
-w42=[]
-w43=[]
-w44=[]
-w45=[]
-w46=[]
-w47=[]
-w48=[]
-w49=[]
-w50=[]
-w51=[]
-w52=[]
-w=[]
+vdomades = []
+iid = ""
 
 def ex3(a,b):
     global eid
@@ -192,7 +141,7 @@ def radevou2(request):
             print(perio)
             print(ful)
             ex2(ful)
-            rad = formes2(eid, perio,ful)
+            rad = formes2(eid, perio, ful)
             print("rad")
 
             return HttpResponseRedirect(reverse('radevou3'))
@@ -228,7 +177,8 @@ def radevou3(request):
         else:
             return render(request, 'radevou3.html', {'form': form, 'users': users,'rad' : rad,'ful':ful})
     elif request.method == 'GET' and request.user.is_authenticated:
-        formes2(eid, perio, rad)
+
+
         form = Ra()
         return render(request, 'radevou3.html', {'form': form, 'users': users,'rad' :rad,'ful':ful})
     else:
@@ -262,7 +212,7 @@ def radevou4(request):
             p.radevous=raaa
             p.save()
             g = Giatroi.objects.get(fullname=ful)
-            g.radevous =  g.radevous.replace(r.radevou, "")
+            g.radevous = g.radevous.replace(r.radevou, "")
             g.save()
             ex4()
             formes(eid, perio)
@@ -351,12 +301,13 @@ def home(request):
 
     return render(request, 'home.html')
 
+
 def radevus(request):
     user = request.user
     print(user)
     r = user.radevou_set.all()
     dates = []
-    ids=[]
+    ids = []
     for i in r:
         dates.append(i.radevou)
         ids.append(i.id)
@@ -365,7 +316,6 @@ def radevus(request):
 
     date_format = '%Y.%d.%m %H:%M'
 
-    global www
     years=[]
     days=[]
     month=[]
@@ -376,7 +326,6 @@ def radevus(request):
 
     weeks=[]
     for i in dates:
-
         years.append(i[:4])
         print(years)
         month.append(i[5:7])
@@ -392,49 +341,11 @@ def radevus(request):
         print(datetimes[j])
         j = j + 1
 
-    iid = ""
+    global iid
+    global vdomades
 
     for k in range(52):
-        if(k>0):
-
-            print("proigoumeni vdomada")
-            last_monday = next_monday
-            print(last_monday)
-            print("vdomada")
-            print(k + 2)
-            next_monday = next_monday + datetime.timedelta(weeks=1)
-            print("epomeni vdomada")
-            print(next_monday)
-
-            iid = ""
-            for j in datetimes:
-                if j >= last_monday and j < next_monday:
-                    for i in r:
-                        #www[k].append(i.id)
-                        #iid = str(i.id) + " " + iid
-
-                        date = i.radevou
-                        print(date)
-                        id = i.id
-                        print(id)
-                        year = date[:4]
-                        print(year)
-                        mon = date[5:7]
-                        print(mon)
-                        day = date[8:10]
-                        print(day)
-                        hour = date[11:13]
-                        print(hour)
-                        minute = date[14:16]
-                        print(minute)
-                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
-                        print(dateti)
-                        print(www)
-
-                    print("imerominia")
-                    print(j)
-            #weeks[k][k].append(www)
-        else:
+        if k < 1:
             today = datetime.datetime.today()
             last_monday = today - datetime.timedelta(days=today.weekday())
             print("proigoumeni vdomada")
@@ -443,6 +354,7 @@ def radevus(request):
             next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
             print(next_monday)
             for j in datetimes:
+                iid = ""
                 if j >= last_monday and j < next_monday:
                     print("epomeni vdomada")
                     print(next_monday)
@@ -451,8 +363,7 @@ def radevus(request):
                     print("vdomada")
                     print("1")
                     for i in r:
-                        #iid = str(i.id) + " " + iid
-                        #www[k].append(i.id)
+                        iid = str(i.id) + " " + iid
                         date = i.radevou
                         print(date)
                         id = i.id
@@ -469,14 +380,51 @@ def radevus(request):
                         print(minute)
                         dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
                         print(dateti)
-            #weeks.append(www)
-
-
-
-    return render(request, 'radevus.html', {'r':r,'user':user})
+        else:
+            last_monday = next_monday
+            print("vdomada")
+            print(k + 2)
+            next_monday = next_monday + datetime.timedelta(weeks=1)
+            iid = ""
+            for j in datetimes:
+                if last_monday <= j < next_monday:
+                    for i in r:
+                        iid = str(i.id) + " " + iid
+                        date = i.radevou
+                        print(date)
+                        id = i.id
+                        print(id)
+                        year = date[:4]
+                        print(year)
+                        mon = date[5:7]
+                        print(mon)
+                        day = date[8:10]
+                        print(day)
+                        hour = date[11:13]
+                        print(hour)
+                        minute = date[14:16]
+                        print(minute)
+                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+                        print(dateti)
+                print("imerominia")
+                print(j)
+        for i in iid:
+            print(i)
+            vdomades.appends(int(i))
+    return render(request, 'radevus.html', {'r':r,'user':user,'vdomades':vdomades})
 
 def contact(request):
 
     return render(request, 'contact.html')
+
+def del_radevou(request, id):
+    if request.method == 'GET' and request.user.is_authenticated():
+        user = request.user
+        rade = user.radevou_set.get(id=id)
+        rade.delete()
+        return HttpResponseRedirect(reverse('radevus'))
+    else:
+        return render(request, 'signin.html')
+
 
 
