@@ -34,7 +34,7 @@ def week_range(date):
     end_date = start_date + timedelta(6)
 
     return (start_date, end_date)
-
+www = [[]]
 eid = ""
 perio=""
 ful=""
@@ -365,7 +365,7 @@ def radevus(request):
 
     date_format = '%Y.%d.%m %H:%M'
 
-
+    global www
     years=[]
     days=[]
     month=[]
@@ -392,88 +392,84 @@ def radevus(request):
         print(datetimes[j])
         j = j + 1
 
-    today = datetime.datetime.today()
-    last_monday = today - datetime.timedelta(days=today.weekday())
-    print("proigoumeni vdomada")
-    print(last_monday)
-    print("epomeni vdomada")
-    next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
-    print(next_monday)
+    iid = ""
 
+    for k in range(52):
+        if(k>0):
 
-    for j in datetimes:
-
-        if j >= last_monday and j < next_monday:
+            print("proigoumeni vdomada")
+            last_monday = next_monday
+            print(last_monday)
+            print("vdomada")
+            print(k + 2)
+            next_monday = next_monday + datetime.timedelta(weeks=1)
             print("epomeni vdomada")
             print(next_monday)
-            print("imerominia")
-            print(j)
-            print("vdomada")
-            print("1")
-            www = []
-            for i in r:
-                www.append(i.id)
-                date = i.radevou
-                print(date)
-                id = i.id
-                print(id)
-                year = date[:4]
-                print(year)
-                mon = date[5:7]
-                print(mon)
-                day = date[8:10]
-                print(day)
-                hour = date[11:13]
-                print(hour)
-                minute = date[14:16]
-                print(minute)
-                dateti=(datetime.datetime(year=int(year), month=int(mon), day=int(day)))
-                print(dateti)
-            weeks[0]=www
-    for k in range(51):
-        print("proigoumeni vdomada")
-        last_monday = next_monday
-        print(last_monday)
-        print("vdomada")
-        print(k + 2)
-        next_monday = next_monday + datetime.timedelta(weeks=1)
-        print("epomeni vdomada")
-        print(next_monday)
-        www = []
-        for j in datetimes:
-            if j >= last_monday and j < next_monday:
 
-                for i in r:
-                    www.append(i.id)
-                    date = i.radevou
-                    print(date)
-                    id = i.id
-                    print(id)
-                    year = date[:4]
-                    print(year)
-                    mon = date[5:7]
-                    print(mon)
-                    day = date[8:10]
-                    print(day)
-                    hour = date[11:13]
-                    print(hour)
-                    minute = date[14:16]
-                    print(minute)
-                    dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
-                    print(dateti)
-                print("imerominia")
-                print(j)
-        weeks[k+1]=www
-    print(weeks)
+            iid = ""
+            for j in datetimes:
+                if j >= last_monday and j < next_monday:
+                    for i in r:
+                        #www[k].append(i.id)
+                        #iid = str(i.id) + " " + iid
 
-    for i in range(53):
-        print(i)
+                        date = i.radevou
+                        print(date)
+                        id = i.id
+                        print(id)
+                        year = date[:4]
+                        print(year)
+                        mon = date[5:7]
+                        print(mon)
+                        day = date[8:10]
+                        print(day)
+                        hour = date[11:13]
+                        print(hour)
+                        minute = date[14:16]
+                        print(minute)
+                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+                        print(dateti)
+                        print(www)
 
-    print(now_string)
-    for i in r:
-        dates.append(i.radevou)
-
-
+                    print("imerominia")
+                    print(j)
+            #weeks[k][k].append(www)
+        else:
+            today = datetime.datetime.today()
+            last_monday = today - datetime.timedelta(days=today.weekday())
+            print("proigoumeni vdomada")
+            print(last_monday)
+            print("epomeni vdomada")
+            next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+            print(next_monday)
+            for j in datetimes:
+                if j >= last_monday and j < next_monday:
+                    print("epomeni vdomada")
+                    print(next_monday)
+                    print("imerominia")
+                    print(j)
+                    print("vdomada")
+                    print("1")
+                    for i in r:
+                        #iid = str(i.id) + " " + iid
+                        #www[k].append(i.id)
+                        date = i.radevou
+                        print(date)
+                        id = i.id
+                        print(id)
+                        year = date[:4]
+                        print(year)
+                        mon = date[5:7]
+                        print(mon)
+                        day = date[8:10]
+                        print(day)
+                        hour = date[11:13]
+                        print(hour)
+                        minute = date[14:16]
+                        print(minute)
+                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+                        print(dateti)
+            #weeks.append(www)
 
 
 
