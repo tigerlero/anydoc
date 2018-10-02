@@ -5,10 +5,9 @@
 
 {% block content %}
 <div id="homediv" style="width: 98%; padding-right:1%; padding-left:1%; padding-top: 1%; float: right;">
+Dates
     <div class="row">
-
     <div style="padding-left: 1%;padding-right: 1%;" class="row">
-
       {% for i in r %}
      <div style="background: lightcyan; margin:100px;font-size: 100%;" class="col-sm-8 col-md-7 col-bg-6">
          Title:
@@ -27,6 +26,45 @@
           {{i.til}}<br>
 
         </div>{% endfor %}
+        </div>
+</div>
+
+<BR><BR><BR><BR>
+Dates sorted by week
+<div class="row">
+
+    <div style="padding: 1%;" class="row">
+          {% for p in v %}
+    {% if p != "" %}
+                Week {{ forloop.counter  }}
+
+              {% for i in r %}
+
+                  <div style="background: lightcyan; margin:100px;font-size: 100%;" class="col-sm-8 col-md-7 col-bg-6">
+                  {% if i.id == p and p != "" and p != " " and i.id != "" and i.id != " " %}
+
+                    Title:
+                     {{i.title}}<br>
+                    Description:
+                     {{i.description}}<br>
+                    Speciality:
+                     {{i.eidi}}<br>
+                    Area:
+                     {{i.peri}}<br>
+                    Fullname:
+                     {{i.fu}}<br>
+                    Dates:
+                     {{i.radevou}}<br>
+                       Telephone:
+                     {{i.til}}<br>
+                  {% endif %}
+                  </div>
+              {% endfor %}
+              {% endif %}
+          {% endfor %}
+
+
+
         </div>
 
 

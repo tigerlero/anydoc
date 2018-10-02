@@ -2,6 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3ef405a-3724-4c4c-a38b-709f198177c3" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/AnyDoc/anydocapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/AnyDoc/anydocapp/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AnyDoc/anydocapp/templates/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/AnyDoc/anydocapp/templates/navbar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html" beforeDir="false" afterPath="$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AnyDoc/anydocapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/AnyDoc/anydocapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AnyDoc/anydocapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/AnyDoc/anydocapp/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,14 +17,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="423" column="21" lean-forward="true" selection-start-line="423" selection-start-column="21" selection-end-line="423" selection-end-column="21" />
+            <state relative-caret-position="502">
+              <caret line="358" column="11" lean-forward="true" selection-start-line="358" selection-start-column="11" selection-end-line="358" selection-end-column="11" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
-                <element signature="e#10307#11538#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navbar.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/navbar.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="83" selection-start-line="7" selection-start-column="83" selection-end-line="7" selection-end-column="83" />
+              <folding>
+                <element signature="n#style#0;n#li#4;n#ul#0;n#nav#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -34,7 +61,11 @@
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
+            <state relative-caret-position="680">
+              <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+              <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+              <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+              <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -42,13 +73,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="radevus.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="radevus.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            <state relative-caret-position="111">
+              <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+              <folding>
+                <element signature="e#804#847#0#HTML" expanded="true" />
+                <element signature="e#1003#1063#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="radevou4.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevou4.html">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
@@ -70,7 +110,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/AnyDoc/anydocapp/urls.py" />
+        <option value="$PROJECT_DIR$/AnyDoc/anydocapp/forms.py" />
+        <option value="$PROJECT_DIR$/AnyDoc/anydocapp/templates/navbar.html" />
         <option value="$PROJECT_DIR$/AnyDoc/anydocapp/views.py" />
+        <option value="$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html" />
       </list>
     </option>
   </component>
@@ -197,23 +241,12 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-357">
@@ -226,13 +259,59 @@
     <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevou3.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevou4.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="17" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/navbar.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="83" selection-start-line="7" selection-start-column="83" selection-end-line="7" selection-end-column="83" />
+          <folding>
+            <element signature="n#style#0;n#li#4;n#ul#0;n#nav#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="423" column="21" lean-forward="true" selection-start-line="423" selection-start-column="21" selection-end-line="423" selection-end-column="21" />
+        <state relative-caret-position="502">
+          <caret line="358" column="11" lean-forward="true" selection-start-line="358" selection-start-column="11" selection-end-line="358" selection-end-column="11" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
-            <element signature="e#10307#11538#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="70" column="9" selection-start-line="70" selection-start-column="9" selection-end-line="70" selection-end-column="9" />
+          <caret line="69" column="9" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+          <caret line="68" column="9" selection-start-line="68" selection-start-column="9" selection-end-line="68" selection-end-column="9" />
+          <caret line="67" column="9" selection-start-line="67" selection-start-column="9" selection-end-line="67" selection-end-column="9" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AnyDoc/anydocapp/templates/radevus.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
+          <folding>
+            <element signature="e#804#847#0#HTML" expanded="true" />
+            <element signature="e#1003#1063#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

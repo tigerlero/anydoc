@@ -5,10 +5,12 @@
         {% if request.user.is_authenticated %}<li style="display:inline;"><a href="{% url 'radevou' %}">Radevou</a></li>
         <li style="display:inline;"><a href="{% url 'radevus' %}">Dates</a></li>
         <li style="display:inline;"><a href="{% url 'resetpass' %}">Reset Password</a></li>
+        <li style="display:inline;"><a href="{% url 'signout' %}">Sign out</a></li>{% endif %}
+{% if not request.user.is_authenticated %}
 
-        <li style="display:inline;"><a href="{% url 'signout' %}">Sign out</a></li>
         <li style="display:inline;"><a href="{% url 'signin' %}">Sign in</a></li>
-             <li style="display:inline;"><a href="{% url 'signup' %}">Sign Up</a></li>{% endif %}
+             <li style="display:inline;"><a href="{% url 'signup' %}">Sign Up</a></li>
+    {% endif %}
 
     </ul>
 </nav>

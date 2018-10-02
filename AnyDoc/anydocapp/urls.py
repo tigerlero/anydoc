@@ -16,7 +16,7 @@ urlpatterns = [
     path('404/', views.handler404, name = '404'),
     path('500/', views.handler500, name = '500'),
     path('signup/', views.signup, name = 'signup'),
-    path('signin/', views.signout, name = 'signout'),
+    path('signout/', views.signout, name = 'signout'),
     #path('singout/', 'django.contrib.auth.views.logout', {'next_page': '/signin'}),
 
 ]

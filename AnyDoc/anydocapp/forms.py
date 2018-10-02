@@ -65,12 +65,10 @@ def formes2(eee,ppp,fff):
         tils.append(til)
         full = str(i.fullname)
         fullnames.append(full)
-        am = i.amka
-        am = str(am)
-        am = am.strip('[Decimal(''),')
-        amkas.append(am)
-
-
+        #am = i.amka
+        #am# = str(am)
+        #am = am.strip('[Decimal(''),')
+        #amkas.append(am)
 
     for i in giatroi:
         print(i.eidikotita)
@@ -216,10 +214,10 @@ def formes(eee,ppp):
         tils.append(til)
         full = str(i.fullname)
         fullnames.append(full)
-        am = i.amka
-        am = str(am)
-        am = am.strip('[Decimal(''),')
-        amkas.append(am)
+        #am = i.amka
+        #am = str(am)
+        #am = am.strip('[Decimal(''),')
+        #amkas.append(am)
 
 
     print(eidikotites)
@@ -285,10 +283,10 @@ def formes(eee,ppp):
     print(tt)
 
 
-    aa = dict((k, k) for k in amkas)
-    aa = aa.items()
-    aa = tuple(aa)
-    print(aa)
+    #aa = dict((k, k) for k in amkas)
+    #aa = aa.items()
+    #aa = tuple(aa)
+    #print(aa)
 
     rr = dict((k, k) for k in radevus)
     rr = rr.items()

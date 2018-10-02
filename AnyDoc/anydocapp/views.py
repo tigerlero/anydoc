@@ -85,6 +85,11 @@ def ex4():
 #    return a
 
 
+def ex6(v):
+    global vdomades
+    vdomades = v
+
+
 def handler400(request):
     return render(request, '400.html', status=400)
 
@@ -295,6 +300,7 @@ def signup(request):
 def signout(request):
     user = request.user
     print(user)
+    logout(request)
     return HttpResponseRedirect(reverse('signin'))
 
 def home(request):
@@ -306,45 +312,51 @@ def radevus(request):
     user = request.user
     print(user)
     r = user.radevou_set.all()
-    dates = []
-    ids = []
-    for i in r:
-        dates.append(i.radevou)
-        ids.append(i.id)
+
+
     now = timezone.now()
     now_string = now.strftime('%Y.%d.%m %H:%M')
-
     date_format = '%Y.%d.%m %H:%M'
-
-    years=[]
-    days=[]
-    month=[]
-    datetimes = []
-    hours=[]
-    minutes=[]
-    j=0
-
-    weeks=[]
-    for i in dates:
-        years.append(i[:4])
-        print(years)
-        month.append(i[5:7])
-        print(month)
-        days.append(i[8:10])
-        print(days)
-        hours.append(i[11:13])
-        print(hours)
-        minutes.append(i[14:16])
-        print(minutes)
-
-        datetimes.append(datetime.datetime(year=int(years[j]), month=int(month[j]), day=int(days[j])))
-        print(datetimes[j])
-        j = j + 1
-
     global iid
-    global vdomades
+    v = []
+    for k in range(52):
+        v.append(k)
+    print(v)
+    mines = []
+    for i in range(12):
+        iidm =""
+        firstday = datetime.datetime.today().replace(day=1)
+        month=firstday.month
+        if month<12:
+            nextfirst = datetime.datetime(firstday.year, month+1, firstday.day)
+        else:
+            nextfirst = datetime.datetime(firstday.year+1, month + 1, firstday.day)
+        for i in r:
+            date = i.radevou
+            print(date)
+            id = i.id
+            print(id)
+            year = date[:4]
+            print(year)
+            mon = date[5:7]
+            print(mon)
+            day = date[8:10]
+            print(day)
+            hour = date[11:13]
+            print(hour)
+            minute = date[14:16]
+            print(minute)
+            mini = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+
+            if mini >= firstday and mini < nextfirst:
+                iidm = iidm
+            print(mini)
+
+
+
 
     for k in range(52):
+        iid=""
         if k < 1:
             today = datetime.datetime.today()
             last_monday = today - datetime.timedelta(days=today.weekday())
@@ -353,65 +365,58 @@ def radevus(request):
             print("epomeni vdomada")
             next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
             print(next_monday)
-            for j in datetimes:
-                iid = ""
-                if j >= last_monday and j < next_monday:
-                    print("epomeni vdomada")
-                    print(next_monday)
-                    print("imerominia")
-                    print(j)
-                    print("vdomada")
-                    print("1")
-                    for i in r:
-                        iid = str(i.id) + " " + iid
-                        date = i.radevou
-                        print(date)
-                        id = i.id
-                        print(id)
-                        year = date[:4]
-                        print(year)
-                        mon = date[5:7]
-                        print(mon)
-                        day = date[8:10]
-                        print(day)
-                        hour = date[11:13]
-                        print(hour)
-                        minute = date[14:16]
-                        print(minute)
-                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
-                        print(dateti)
+            for i in r:
+                date = i.radevou
+                print(date)
+                id = i.id
+                print(id)
+                year = date[:4]
+                print(year)
+                mon = date[5:7]
+                print(mon)
+                day = date[8:10]
+                print(day)
+                hour = date[11:13]
+                print(hour)
+                minute = date[14:16]
+                print(minute)
+                dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+
+                if dateti >= last_monday and dateti < next_monday:
+                    iid = iid
+                print(dateti)
+
+
         else:
             last_monday = next_monday
             print("vdomada")
             print(k + 2)
             next_monday = next_monday + datetime.timedelta(weeks=1)
-            iid = ""
-            for j in datetimes:
-                if last_monday <= j < next_monday:
-                    for i in r:
-                        iid = str(i.id) + " " + iid
-                        date = i.radevou
-                        print(date)
-                        id = i.id
-                        print(id)
-                        year = date[:4]
-                        print(year)
-                        mon = date[5:7]
-                        print(mon)
-                        day = date[8:10]
-                        print(day)
-                        hour = date[11:13]
-                        print(hour)
-                        minute = date[14:16]
-                        print(minute)
-                        dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
-                        print(dateti)
-                print("imerominia")
-                print(j)
-        for i in iid:
-            print(i)
-            vdomades.appends(int(i))
-    return render(request, 'radevus.html', {'r':r,'user':user,'vdomades':vdomades})
+
+            for i in r:
+                date = i.radevou
+                print(date)
+                id = i.id
+                print(id)
+                year = date[:4]
+                print(year)
+                mon = date[5:7]
+                print(mon)
+                day = date[8:10]
+                print(day)
+                hour = date[11:13]
+                print(hour)
+                minute = date[14:16]
+                print(minute)
+                dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+
+                if dateti >= last_monday and dateti < next_monday:
+                    iid = i.id
+                print(dateti)
+        v[k] = iid
+    print(v)
+    ex6(v)
+    return render(request, 'radevus.html', {'r':r,'user':user,'v':v})
 
 def contact(request):
 
