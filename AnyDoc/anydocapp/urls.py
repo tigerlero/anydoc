@@ -17,6 +17,7 @@ urlpatterns = [
     path('500/', views.handler500, name = '500'),
     path('signup/', views.signup, name = 'signup'),
     path('signout/', views.signout, name = 'signout'),
+    path('del_radevou/<int:id>/', views.del_radevou, name = 'del_radevou'),
     #path('singout/', 'django.contrib.auth.views.logout', {'next_page': '/signin'}),
 
 ]

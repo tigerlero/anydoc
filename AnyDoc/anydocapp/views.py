@@ -324,47 +324,19 @@ def radevus(request):
     print(v)
     mines = []
     for i in range(12):
-        iidm =""
-        firstday = datetime.datetime.today().replace(day=1)
-        month=firstday.month
-        if month<12:
-            nextfirst = datetime.datetime(firstday.year, month+1, firstday.day)
-        else:
-            nextfirst = datetime.datetime(firstday.year+1, month + 1, firstday.day)
-        for i in r:
-            date = i.radevou
-            print(date)
-            id = i.id
-            print(id)
-            year = date[:4]
-            print(year)
-            mon = date[5:7]
-            print(mon)
-            day = date[8:10]
-            print(day)
-            hour = date[11:13]
-            print(hour)
-            minute = date[14:16]
-            print(minute)
-            mini = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+        mines.append(i)
+    for l in range(12):
+        iidm = ""
+        if l<1:
 
-            if mini >= firstday and mini < nextfirst:
-                iidm = iidm
-            print(mini)
-
-
-
-
-    for k in range(52):
-        iid=""
-        if k < 1:
-            today = datetime.datetime.today()
-            last_monday = today - datetime.timedelta(days=today.weekday())
-            print("proigoumeni vdomada")
-            print(last_monday)
-            print("epomeni vdomada")
-            next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
-            print(next_monday)
+            firstday = datetime.datetime.today().replace(day=1)
+            month=firstday.month
+            if month<12:
+                month = month + 1
+                nextfirst = datetime.datetime(firstday.year, month, firstday.day)
+            else:
+                month=1
+                nextfirst = datetime.datetime(firstday.year+1, month, firstday.day)
             for i in r:
                 date = i.radevou
                 print(date)
@@ -380,17 +352,72 @@ def radevus(request):
                 print(hour)
                 minute = date[14:16]
                 print(minute)
+                mini = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+                print("mini")
+                print(mini)
+                print(firstday)
+                print(nextfirst)
+                if mini >= firstday and mini < nextfirst:
+                    iidm = i.id
+            mines[l] = iidm
+        else:
+            firstday = nextfirst
+            month = firstday.month
+            if month < 12:
+                month = month + 1
+                nextfirst = datetime.datetime(firstday.year, month, firstday.day)
+            else:
+                month = 1
+                nextfirst = datetime.datetime(firstday.year + 1, month, firstday.day)
+            for i in r:
+                date = i.radevou
+                print(date)
+                id = i.id
+                print(id)
+                year = date[:4]
+                print(year)
+                mon = date[5:7]
+                print(mon)
+                day = date[8:10]
+                print(day)
+                hour = date[11:13]
+                print(hour)
+                minute = date[14:16]
+                print(minute)
+                mini = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
+                print("mini")
+                print(mini)
+                print(firstday)
+                print(nextfirst)
+                if mini >= firstday and mini < nextfirst:
+                    iidm = i.id
+            mines[l] = iidm
+
+    print(mines)
+
+
+
+    for k in range(52):
+        iid=""
+        if k < 1:
+            today = datetime.datetime.today()
+            last_monday = today - datetime.timedelta(days=today.weekday())
+            next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+            for i in r:
+                date = i.radevou
+                id = i.id
+                year = date[:4]
+                mon = date[5:7]
+                day = date[8:10]
+                hour = date[11:13]
+                minute = date[14:16]
                 dateti = (datetime.datetime(year=int(year), month=int(mon), day=int(day)))
 
                 if dateti >= last_monday and dateti < next_monday:
-                    iid = iid
-                print(dateti)
-
+                    iid = i.id
 
         else:
             last_monday = next_monday
-            print("vdomada")
-            print(k + 2)
             next_monday = next_monday + datetime.timedelta(weeks=1)
 
             for i in r:
@@ -412,22 +439,21 @@ def radevus(request):
 
                 if dateti >= last_monday and dateti < next_monday:
                     iid = i.id
-                print(dateti)
         v[k] = iid
-    print(v)
+
     ex6(v)
-    return render(request, 'radevus.html', {'r':r,'user':user,'v':v})
+    return render(request, 'radevus.html', {'r':r,'user':user,'v':v,"mines":mines})
 
 def contact(request):
 
     return render(request, 'contact.html')
 
 def del_radevou(request, id):
-    if request.method == 'GET' and request.user.is_authenticated():
+    if request.method == 'GET' and request.user.is_authenticated:
         user = request.user
         rade = user.radevou_set.get(id=id)
         rade.delete()
-        return HttpResponseRedirect(reverse('radevus'))
+        return HttpResponseRedirect(reverse('home'))
     else:
         return render(request, 'signin.html')
 

@@ -24,6 +24,7 @@ Dates
           {{i.radevou}}<br>
             Telephone:
           {{i.til}}<br>
+     <a href='/del_radevou/{{i.id}}/'> Delete</a> <br />
 
         </div>{% endfor %}
         </div>
@@ -40,6 +41,47 @@ Dates sorted by week
 
               {% for i in r %}
 
+                  <div style="background: lightcyan; margin:100px;font-size: 100%;" class="col-sm-8 col-md-7 col-bg-6">
+                  {% if i.id == p and p != "" and p != " " and i.id != "" and i.id != " " %}
+
+                    Title:
+                     {{i.title}}<br>
+                    Description:
+                     {{i.description}}<br>
+                    Speciality:
+                     {{i.eidi}}<br>
+                    Area:
+                     {{i.peri}}<br>
+                    Fullname:
+                     {{i.fu}}<br>
+                    Dates:
+                     {{i.radevou}}<br>
+                       Telephone:
+                     {{i.til}}<br>
+                  {% endif %}
+                  </div>
+              {% endfor %}
+              {% endif %}
+          {% endfor %}
+
+
+
+        </div>
+
+
+</div>
+
+<BR><BR><BR><BR>
+Dates sorted by month
+<div class="row">
+
+    <div style="padding: 1%;" class="row">
+          {% for p in mines %}
+    {% if p != "" %}
+                Month {{ forloop.counter  }}
+
+              {% for i in r %}
+{{ p }}
                   <div style="background: lightcyan; margin:100px;font-size: 100%;" class="col-sm-8 col-md-7 col-bg-6">
                   {% if i.id == p and p != "" and p != " " and i.id != "" and i.id != " " %}
 
