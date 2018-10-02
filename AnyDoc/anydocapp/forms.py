@@ -89,6 +89,7 @@ def formes2(eee,ppp,fff):
     radevus = []
     for i in giatroi:
         if i.fullname == fff:
+            t = i.til
             rad = str(i.radevous)
             rarray = rad.split(",")
             for j in rarray:
@@ -100,6 +101,66 @@ def formes2(eee,ppp,fff):
     return r
 
 
+def formes3(eee,ppp,fff):
+    #metavlites p eftiaksa gia to search
+    global radevus
+    global giatroi
+    global eidikotites
+    global perioxes
+    global tils
+    global fullnames
+    global amkas
+    global e
+    global f
+    global t
+    global p
+    global a
+    global r
+    #metavlites p einai apo formes
+    global eid
+    global perio
+    global ful
+    global rad
+    global t
+    global d
+    global ee
+    global ff
+    global pp
+    global rr
+    global aa
+    global tt
+    radevus = []
+    giatroi = Giatroi.objects.all()
+    eidikotites = []
+    perioxes = []
+    tils = []
+    fullnames = []
+    amkas = []
+
+
+
+
+    for i in giatroi:
+        print(i.eidikotita)
+        print(i.perioxi)
+        print(eee)
+        print(ppp)
+        if i.eidikotita == eee and i.perioxi == ppp:
+            e=eee
+            p=ppp
+            full = str(i.fullname)
+            if full != "" and full != " ":
+                print(full)
+                fullnames.append(full)
+                print(fullnames)
+
+    for i in giatroi:
+        if i.fullname == fff:
+            t = i.til
+            t = str(t)
+            t = t.strip('[Decimal(''),')
+
+    return t
 
 
 def formes(eee,ppp):

@@ -10,19 +10,21 @@
     <div style="padding-left: 1%;padding-right: 1%;" class="row">
 
       {% for i in r %}
-     <div style=" padding:20px;font-size: 100%;" class="col-sm-4 col-md-3 col-bg-2">
-         Title: <br>
+     <div style="background: lightcyan; margin:100px;font-size: 100%;" class="col-sm-8 col-md-7 col-bg-6">
+         Title:
           {{i.title}}<br>
-         Description: <br>
+         Description:
           {{i.description}}<br>
-         Speciality: <br>
+         Speciality:
           {{i.eidi}}<br>
-         Area: <br>
+         Area:
           {{i.peri}}<br>
-         Fullname: <br>
+         Fullname:
           {{i.fu}}<br>
-         Dates: <br>
+         Dates:
           {{i.radevou}}<br>
+            Telephone:
+          {{i.til}}<br>
 
         </div>{% endfor %}
         </div>

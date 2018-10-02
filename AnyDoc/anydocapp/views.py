@@ -4,11 +4,36 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu, formes,formes2
+from .forms import UserRegFrom, ResetPasswordForm, Ra, Ep, Rade, Fu, formes,formes2,formes3
 from .models import Profile, Radevou, Giatroi
+from datetime import datetime
+import datetime
+from django.utils import timezone
+from datetime import timedelta
+from dateutil import parser
+def week_range(date):
+    """Find the first/last day of the week for the given day.
+    Assuming weeks start on Sunday and end on Saturday.
 
+    Returns a tuple of ``(start_date, end_date)``.
 
+    """
+    # isocalendar calculates the year, week of the year, and day of the week.
+    # dow is Mon = 1, Sat = 6, Sun = 7
+    year, week, dow = date.isocalendar()
 
+    # Find the first day of the week.
+    if dow == 7:
+        # Since we want to start with Sunday, let's test for that condition.
+        start_date = date
+    else:
+        # Otherwise, subtract `dow` number days to get the first day
+        start_date = date - timedelta(dow)
+
+    # Now, add 6 for the last day of the week (i.e., count up to Saturday)
+    end_date = start_date + timedelta(6)
+
+    return (start_date, end_date)
 
 eid = ""
 perio=""
@@ -16,6 +41,7 @@ ful=""
 rad = ""
 t=""
 d=""
+til =""
 
 def ex3(a,b):
     global eid
@@ -144,7 +170,6 @@ def radevou3(request):
             print(rad)
             ex1(rad)
             #print(e)
-            formes2(eid, perio, rad)
 
             return HttpResponseRedirect(reverse('radevou4'))
         else:
@@ -171,13 +196,15 @@ def radevou4(request):
             global rad
             global t
             global d
-            global ids
+            global til
+            til = formes3(eid, perio, ful)
+            #til = Decimal(til)
             formes(eid, perio)
             t = form.cleaned_data.get('title')
             d = form.cleaned_data.get('description')
             user = request.user
             p = user.profile
-            r = user.radevou_set.create(title=t, description=d, radevou=rad, eidi=eid, peri=perio, fu= ful)
+            r = user.radevou_set.create(title=t, description=d, radevou=rad, eidi=eid, peri=perio, fu= ful,til=til)
             raaa = str(p.radevous) + " " + rad
             p.radevous=raaa
             p.save()
@@ -216,6 +243,7 @@ def resetpass(request):
 
 
 def signin(request):
+
     if request.method == 'GET':
         return render(request, 'signin.html', )
     elif request.method == 'POST':
@@ -262,8 +290,9 @@ def signup(request):
 
 
 def signout(request):
-    logout(request)
-    return render(request, 'signin.html')
+    user = request.user
+    print(user)
+    return HttpResponseRedirect(reverse('signin'))
 
 def home(request):
 
@@ -276,9 +305,63 @@ def radevus(request):
     dates = []
     for i in r:
         dates.append(i.radevou)
-        print(dates)
-    print(r[1])
-    print(r)
+    now = timezone.now()
+    now_string = now.strftime('%Y.%d.%m %H:%M')
+
+    date_format = '%Y.%d.%m %H:%M'
+    d = datetime.datetime(2018,10,1)
+    print(d)
+    week = week_range(d)
+    print(week)
+
+    years=[]
+    days=[]
+    month=[]
+    datetimes = []
+    hours=[]
+    minutes=[]
+    j=0
+
+    weeks=[]
+    for i in dates:
+
+        years.append(i[:4])
+        print(years)
+        month.append(i[5:7])
+        print(month)
+        days.append(i[8:10])
+        print(days)
+        hours.append(i[11:13])
+        print(hours)
+        minutes.append(i[14:16])
+        print(minutes)
+
+        datetimes.append(datetime.datetime(year=int(years[j]), month=int(month[j]), day=int(days[j])))
+        print(datetimes[j])
+
+
+
+        j = j + 1
+    today = datetime.datetime.today()
+    last_monday = today - datetime.timedelta(days=today.weekday())
+    print(last_monday)
+    monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+    for k in range(51):
+        print(k)
+        next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=k)
+
+        for i in datetimes:
+            if i < next_monday:
+                weeks.append(datetimes)
+    print(weeks)
+
+            #weeks[k] =
+    #Radevou.objects.filter(date_joined__range=week)
+
+    print(now_string)
+    for i in r:
+        dates.append(i.radevou)
+
 
 
 

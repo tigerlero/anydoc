@@ -19,6 +19,7 @@ class Radevou(models.Model):
     peri = models.CharField(max_length=80, default="")
     fu = models.CharField(max_length=50, default="")
     radevou = models.TextField(default="", max_length=3001)
+    til = models.CharField(max_length=13, default="")
 
     def __str__(self):
         return self.user.username + " " + self.radevou
