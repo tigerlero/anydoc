@@ -10,7 +10,7 @@ from datetime import datetime
 import datetime
 from django.utils import timezone
 from datetime import timedelta
-from dateutil import parser
+
 def week_range(date):
     """Find the first/last day of the week for the given day.
     Assuming weeks start on Sunday and end on Saturday.
@@ -303,16 +303,15 @@ def radevus(request):
     print(user)
     r = user.radevou_set.all()
     dates = []
+    ids=[]
     for i in r:
         dates.append(i.radevou)
+        ids.append(i.id)
     now = timezone.now()
     now_string = now.strftime('%Y.%d.%m %H:%M')
 
     date_format = '%Y.%d.%m %H:%M'
-    d = datetime.datetime(2018,10,1)
-    print(d)
-    week = week_range(d)
-    print(week)
+
 
     years=[]
     days=[]
@@ -338,25 +337,41 @@ def radevus(request):
 
         datetimes.append(datetime.datetime(year=int(years[j]), month=int(month[j]), day=int(days[j])))
         print(datetimes[j])
-
-
-
         j = j + 1
+
     today = datetime.datetime.today()
     last_monday = today - datetime.timedelta(days=today.weekday())
+    print("proigoumeni vdomada")
     print(last_monday)
-    monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
-    for k in range(51):
-        print(k)
-        next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=k)
+    print("epomeni vdomada")
+    next_monday = today + datetime.timedelta(days=-today.weekday(), weeks=1)
+    print(next_monday)
+    for i in datetimes:
+        if i >= last_monday and i < next_monday:
+            print("epomeni vdomada")
+            print(next_monday)
+            print("imerominia")
+            print(i)
+            print("vdomada")
+            print("1")
 
+    for k in range(51):
+        print("proigoumeni vdomada")
+        last_monday = next_monday
+        print(last_monday)
+        print("vdomada")
+        print(k + 2)
+        next_monday = next_monday + datetime.timedelta(weeks=1)
+        print("epomeni vdomada")
+        print(next_monday)
         for i in datetimes:
-            if i < next_monday:
-                weeks.append(datetimes)
+            if i >= last_monday and i < next_monday:
+
+                print("imerominia")
+                print(i)
+                weeks[k+1]=
     print(weeks)
 
-            #weeks[k] =
-    #Radevou.objects.filter(date_joined__range=week)
 
     print(now_string)
     for i in r:
